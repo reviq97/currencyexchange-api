@@ -30,3 +30,6 @@ C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\obj\Debug\n
 C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\obj\Debug\net6.0\currencyexchange-api.pdb
 C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\obj\Debug\net6.0\currencyexchange-api.genruntimeconfig.cache
 C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\obj\Debug\net6.0\ref\currencyexchange-api.dll
+C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\bin\Debug\net6.0\Flurl.dll
+C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\bin\Debug\net6.0\Flurl.Http.dll
+C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\bin\Debug\net6.0\Newtonsoft.Json.dll

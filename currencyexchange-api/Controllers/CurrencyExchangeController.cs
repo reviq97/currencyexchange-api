@@ -10,17 +10,17 @@ namespace currencyexchange_api.Controllers
     [ApiController]
     public class CurrencyExchangeController : ControllerBase
     {
-        private readonly ICurrencyExchangeService _currencyExchangeService;
+        private readonly ICurrencyRatesService _currencyExchangeService;
 
-        public CurrencyExchangeController(ICurrencyExchangeService currencyExchangeService)
+        public CurrencyExchangeController(ICurrencyRatesService currencyExchangeService)
         {
             _currencyExchangeService = currencyExchangeService;
         }
 
         [HttpPost]
-        public async Task<object> Post([FromBody] ExchangeSpan exchangeSpan)
+        public async Task<object> GetRates([FromBody] ExchangeSpan exchangeSpan)
         {
-            var result = await _currencyExchangeService.ExchangeCurrencies(exchangeSpan);
+            var result = await _currencyExchangeService.GetRates(exchangeSpan);
 
             return result;
         }
