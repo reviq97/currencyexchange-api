@@ -5,6 +5,14 @@
 		private Dictionary<string,string>? _currencyCodes;
 		private DateTime _startDate;
 		private DateTime _endDate;
+		private string _apiKey;
+
+		public string ApiKey
+		{
+			get { return _apiKey; }
+			set { _apiKey = value; }
+		}
+
 
 		public DateTime EndDate
 		{

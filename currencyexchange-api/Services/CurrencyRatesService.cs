@@ -26,7 +26,7 @@ namespace currencyexchange_api.Services
             {
                 var gatewayRequest = new FetchCurrencyRequest(item.Key, item.Value, startDate, endDate);
 
-                var currencyContent =  await _fetchContentService.FetchCurrencyRate(gatewayRequest);
+                currencyRates.Add(await _fetchContentService.FetchCurrencyRate(gatewayRequest));
                 
             }
 

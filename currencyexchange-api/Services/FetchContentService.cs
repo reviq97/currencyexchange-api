@@ -25,6 +25,9 @@ namespace currencyexchange_api.Services
                 endDate = currencyRequest.EndDate.ToString("yyyy-MM-dd")
             }).GetJsonAsync();
 
+            // use automapper maybe
+            // var mapRequestToCurencyRate = new CurrencyRate(...) 
+
             //TODO:Map response to the list of objects and return results 
 
             return null;
