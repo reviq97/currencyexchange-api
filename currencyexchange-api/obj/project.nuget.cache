@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "YN6qcGN1zVomaBylHe6tr4UIowgwiCCOrtS8nmvN4yQYJiPZ8De8kdN+56bAOyvlheG029hY3iNg2Bs8T3cKjQ==",
+  "dgSpecHash": "3jF4LhvDtdN1GxufTqhiU53o4oCDXAD9ERSaAEFpVLJ0+nAO6htHUruXRDHK4tvak2FzNJCzlLxE5aXd5QzyHg==",
   "success": true,
   "projectFilePath": "C:\\Users\\nway\\source\\repos\\currencyexchange-api\\currencyexchange-api\\currencyexchange-api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\nway\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
+    "C:\\Users\\nway\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\nway\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.1\\fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\flurl\\3.0.6\\flurl.3.0.6.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\flurl.http\\3.2.4\\flurl.http.3.2.4.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\nway\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512",
