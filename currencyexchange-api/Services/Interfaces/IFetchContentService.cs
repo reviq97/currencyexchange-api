@@ -4,6 +4,6 @@ namespace currencyexchange_api.Services.Interfaces
 {
     public interface IFetchContentService
     {
-        Task<CurrencyRate> FetchCurrencyRate(FetchCurrencyRequest currencyRequest);
+        Task<IEnumerable<CurrencyRate>> FetchCurrencyRate(FetchCurrencyRequest currencyRequest);
     }
 }

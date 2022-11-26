@@ -5,6 +5,6 @@ namespace currencyexchange_api.Services.Interfaces
 {
     public interface ICurrencyRatesService
     {
-        Task<IEnumerable<CurrencyRate>> GetRates(ExchangeSpan exchangeSpan);
+        Task<IEnumerable<CurrencyHistory>> GetRates(ExchangeSpan exchangeSpan);
     }
 }

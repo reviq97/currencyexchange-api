@@ -10,10 +10,10 @@
 		public DateTime Date
 		{
 			get { return _date; }
-			set { _date = value; }
+			init { _date = value; }
 		}
 
-		public string Rate
+        public string Rate
 		{
 			get { return _rate; }
 			init { _rate = value; }

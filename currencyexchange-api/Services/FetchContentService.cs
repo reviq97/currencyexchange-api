@@ -1,36 +1,52 @@
-﻿using currencyexchange_api.Models;
+﻿using currencyexchange_api.Entity;
+using currencyexchange_api.Models;
 using currencyexchange_api.Services.Interfaces;
-using Flurl;
-using Flurl.Http;
+using System.Text;
 
 namespace currencyexchange_api.Services
 {
     public class FetchContentService : IFetchContentService
     {
-        private readonly RestClientConfig _clientConfig;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IRequestResultDeserializer _requestResultDeserializer;
+        private readonly IConfiguration _configuration;
 
-        public FetchContentService(RestClientConfig clientConfig)
+        public FetchContentService(IConfiguration configuration, IHttpClientFactory httpClientFactory, IRequestResultDeserializer requestResultSerializer)
         {
-            _clientConfig = clientConfig;
+            _configuration = configuration;
+            _httpClientFactory = httpClientFactory;
+            _requestResultDeserializer = requestResultSerializer;
         }
 
-        public async Task<CurrencyRate> FetchCurrencyRate(FetchCurrencyRequest currencyRequest)
+        public async Task<IEnumerable<CurrencyRate>> FetchCurrencyRate(FetchCurrencyRequest currencyRequest )
         {
+
+            var basePath = _configuration.GetValue<string>("RestClients:ExchangeRate:BasePath");
             var currency = currencyRequest.Currency;
             var currencyDenominator = currencyRequest.CurrencyDenominator;
+            var startDate = currencyRequest.StartDate.ToString("yyyy-MM-dd");
+            var endDate = currencyRequest.EndDate.ToString("yyyy-MM-dd");
 
-            var clientRequest = await (_clientConfig.BasePath + $@"D.{currency}.{currencyDenominator}.SP00.A").SetQueryParams(new
+            var uri = new Uri(basePath + $"timeseries?start_date={currencyRequest.StartDate.ToString("yyyy-MM-dd")}" +
+                                         $"&end_date={currencyRequest.EndDate.ToString("yyyy-MM-dd")}" +
+                                         $"&base={currencyRequest.Currency}" +
+                                         $"&symbols={currencyRequest.CurrencyDenominator}" +
+                                         $"&amount=1&format=xml");
+
+            var httpClient = _httpClientFactory.CreateClient();
+            var response = await httpClient.GetStringAsync(uri);
+            var parseResult = await _requestResultDeserializer.DeserializeXmlToObject<document>(response);
+
+            var currencyRateList = parseResult.data.Select(x => new CurrencyRate
             {
-                startDate = currencyRequest.StartDate.ToString("yyyy-MM-dd"),
-                endDate = currencyRequest.EndDate.ToString("yyyy-MM-dd")
-            }).GetJsonAsync();
+                Currency = x.@base,
+                CurrencyDenominator = x.code,
+                Rate = x.rate.ToString(),
+                Date = x.date,
+            });
 
-            // use automapper maybe
-            // var mapRequestToCurencyRate = new CurrencyRate(...) 
 
-            //TODO:Map response to the list of objects and return results 
-
-            return null;
+            return currencyRateList;
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using currencyexchange_api.Entity;
 using currencyexchange_api.Models;
 using currencyexchange_api.Services.Interfaces;
-using Flurl.Http;
-using System.Runtime.CompilerServices;
 
 namespace currencyexchange_api.Services
 {
@@ -14,23 +12,38 @@ namespace currencyexchange_api.Services
         {
             _fetchContentService = fetchContentService;
         }
-        public async Task<IEnumerable<CurrencyRate>> GetRates(ExchangeSpan exchangeSpan)
+        public async Task<IEnumerable<CurrencyHistory>> GetRates(ExchangeSpan exchangeSpan)
         {
             var startDate = exchangeSpan.StartDate;
             var endDate = exchangeSpan.EndDate;
-            var dictionary = exchangeSpan.currencyCodes;
 
             List<CurrencyRate> currencyRates = new();
 
-            foreach (var item in dictionary)
+            foreach (var item in exchangeSpan.currencyCodes)
             {
-                var gatewayRequest = new FetchCurrencyRequest(item.Key, item.Value, startDate, endDate);
+                var gatewayRequest = new FetchCurrencyRequest(item.Key.ToUpper(), item.Value.ToUpper(), startDate, endDate);
 
-                currencyRates.Add(await _fetchContentService.FetchCurrencyRate(gatewayRequest));
-                
+                currencyRates.AddRange(await _fetchContentService.FetchCurrencyRate(gatewayRequest));
             }
 
-            return null;
+            var currencyHistory = currencyRates.Select(x => new CurrencyHistory
+            {
+                currency = x.Currency,
+                history = new History
+                {
+                    date= x.Date,
+                    details = new List<Details>()
+                    {
+                        new Details()
+                        {
+                            denominator = x.CurrencyDenominator,
+                            rate = x.Rate,
+                        }
+                    }
+                }
+            });
+
+            return currencyHistory;
         }
     }
 }
