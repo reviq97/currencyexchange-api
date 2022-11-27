@@ -14,26 +14,38 @@ namespace currencyexchange_api.Controllers
     {
         private readonly ICurrencyRatesService _currencyRatesService;
         private readonly IApiKeyGeneratorService _apiKeyGeneratorService;
+        private readonly IJwtGeneratorService _jwtGeneratorService;
 
-        public CurrencyExchangeController(ICurrencyRatesService currencyExchangeService)
+        public CurrencyExchangeController(ICurrencyRatesService currencyExchangeService, IApiKeyGeneratorService apiKeyGeneratorService, IJwtGeneratorService jwtGeneratorService)
         {
             _currencyRatesService = currencyExchangeService;
+            _apiKeyGeneratorService = apiKeyGeneratorService;
+            _jwtGeneratorService = jwtGeneratorService;
         }
 
         [Authorize]
-        [HttpPost]
-        public async Task<IEnumerable<CurrencyHistory>> GetRates([FromBody] ExchangeSpan exchangeSpan)
+        [HttpPost("currency/timeline")]
+        public async Task<ActionResult<IEnumerable<CurrencyHistory>>> GetRates([FromBody] ExchangeSpan exchangeSpan)
         {
             var result = await _currencyRatesService.GetRates(exchangeSpan);
 
-            return result;
+            return Ok(result);
         }
 
-        [HttpGet]
-        public async Task<string> GetApiKey()
+        [HttpPost("apikey/register")]
+        public async Task<ActionResult<string>> RegisterApiKey(string email)
         {
-            var apiKey = _apiKeyGeneratorService.GenerateApiKey();
-            return apiKey;
+            var message = _apiKeyGeneratorService.GenerateApiKey(email);
+
+            return Ok(message);
+        }
+
+        [HttpPost("apikey/login")]
+        public async Task<ActionResult<string>> Login(string email)
+        {
+            var token = _jwtGeneratorService.GenerateJwtToken(email);
+
+            return Ok(token);
         }
 
     }

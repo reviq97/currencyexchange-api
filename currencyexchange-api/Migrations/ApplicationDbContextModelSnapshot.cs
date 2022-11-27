@@ -21,11 +21,16 @@ namespace currencyexchangeapi.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("currencyexchange_api.Entity.ExchangeSpan", b =>
+            modelBuilder.Entity("currencyexchange_api.Entity.ApiUser", b =>
                 {
                     b.Property<string>("ApiKey")
                         .HasColumnType("text")
                         .HasColumnName("api_key");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("email");
 
                     b.HasKey("ApiKey");
 

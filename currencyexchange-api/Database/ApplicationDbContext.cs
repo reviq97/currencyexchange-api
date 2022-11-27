@@ -10,6 +10,6 @@ namespace currencyexchange_api.Database
 
         }
 
-        DbSet<ExchangeSpan> ExchangeSpans { get; set; }
+        public DbSet<ApiUser> ApiUsers { get; set; }
     }
 }

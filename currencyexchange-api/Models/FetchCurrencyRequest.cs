@@ -9,10 +9,10 @@
 
         public FetchCurrencyRequest(string currency, string currencyDenominator, DateTime startDate, DateTime endDate)
         {
-            this._currency = currency;
-            this._currencyDenominator = currencyDenominator;
-            this._startDate = startDate;
-            this._endDate = endDate;
+            _currency = currency;
+            _currencyDenominator = currencyDenominator;
+            _startDate = startDate;
+            _endDate = endDate;
         }
 
         public string Currency { get => _currency; init => _currency = value; }

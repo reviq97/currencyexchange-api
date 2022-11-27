@@ -14,7 +14,8 @@ namespace currencyexchangeapi.Migrations
                 name: "api_users",
                 columns: table => new
                 {
-                    apikey = table.Column<string>(name: "api_key", type: "text", nullable: false)
+                    apikey = table.Column<string>(name: "api_key", type: "text", nullable: false),
+                    email = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

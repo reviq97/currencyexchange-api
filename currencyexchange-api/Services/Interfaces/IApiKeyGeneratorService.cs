@@ -1,7 +1,7 @@
 ﻿namespace currencyexchange_api.Services.Interfaces
 {
-    internal interface IApiKeyGeneratorService
+    public interface IApiKeyGeneratorService
     {
-        string GenerateApiKey();
+        string GenerateApiKey(string email);
     }
 }
