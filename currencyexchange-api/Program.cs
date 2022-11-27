@@ -1,6 +1,7 @@
 using currencyexchange_api;
 using currencyexchange_api.Database;
 using currencyexchange_api.Entity;
+using currencyexchange_api.Middleware;
 using currencyexchange_api.Models;
 using currencyexchange_api.Services;
 using currencyexchange_api.Services.Interfaces;
@@ -17,9 +18,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 var authenticationSettings = new AuthenticationSettings();
 
+builder.Services.AddMemoryCache();
 builder.Configuration.GetSection("Authentication").Bind(authenticationSettings);
 builder.Services.AddSingleton(authenticationSettings);
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = "Bearer";
@@ -45,21 +46,21 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IValidator<ExchangeSpan>, ExchangeSpanValidator>();
 builder.Services.AddSingleton<ICurrencyRatesService, CurrencyRatesService>();
 builder.Services.AddSingleton<IFetchContentService, FetchContentService>();
-builder.Services.AddSingleton<IRequestResultDeserializer, RequestResultSerializer>();
+builder.Services.AddSingleton<IRequestResultDeserializer, RequestResultDeserializer>();
 builder.Services.AddScoped<IApiKeyGeneratorService, ApiKeyGeneratorService>();
 builder.Services.AddScoped<IJwtGeneratorService, JwtGeneratorService>();
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

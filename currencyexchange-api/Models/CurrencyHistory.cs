@@ -3,7 +3,7 @@
     public class CurrencyHistory
     {
         public string currency { get; init; }
-        public History history { get; init; }
+        public List<History> history { get; init; }
     }
     public class Details
     {

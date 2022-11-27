@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace currencyexchange_api.Services
 {
-    public class RequestResultSerializer : IRequestResultDeserializer
+    public class RequestResultDeserializer : IRequestResultDeserializer
     {
 
         public async Task<T> DeserializeXmlToObject<T>(string deserializedObject)

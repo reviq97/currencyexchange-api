@@ -1,49 +1,55 @@
 ﻿using currencyexchange_api.Entity;
 using currencyexchange_api.Models;
 using currencyexchange_api.Services.Interfaces;
+using Microsoft.Extensions.Caching.Memory;
+using System.Collections.Generic;
+using System.Security.Cryptography.Xml;
 
 namespace currencyexchange_api.Services
 {
     public class CurrencyRatesService : ICurrencyRatesService
     {
         private readonly IFetchContentService _fetchContentService;
+        private readonly IMemoryCache _memoryCache;
 
-        public CurrencyRatesService(IFetchContentService fetchContentService)
+        public CurrencyRatesService(IFetchContentService fetchContentService, IMemoryCache memoryCache)
         {
             _fetchContentService = fetchContentService;
+            _memoryCache = memoryCache;
         }
         public async Task<IEnumerable<CurrencyHistory>> GetRates(ExchangeSpan exchangeSpan)
         {
             var startDate = exchangeSpan.StartDate;
             var endDate = exchangeSpan.EndDate;
 
-            List<CurrencyRate> currencyRates = new();
+            var currencyCacheMap = new Dictionary<Tuple<string, string, DateTime, DateTime >, List<CurrencyRate>>();
+
 
             foreach (var item in exchangeSpan.currencyCodes)
             {
-                var gatewayRequest = new FetchCurrencyRequest(item.Key.ToUpper(), item.Value.ToUpper(), startDate, endDate);
+                var currencyCache = _memoryCache.Get(new Tuple<string, string, DateTime, DateTime>(item.Key.ToUpper(), item.Value.ToUpper(),startDate, endDate ));
+                var currencyRate = new List<CurrencyRate>();
 
-                currencyRates.AddRange(await _fetchContentService.FetchCurrencyRate(gatewayRequest));
+                if (currencyCache is null)
+                {
+
+                    var gatewayRequest = new FetchCurrencyRequest(item.Key.ToUpper(), item.Value.ToUpper(), startDate, endDate);
+                    var response = await _fetchContentService.FetchCurrencyRate(gatewayRequest);
+                    currencyRate.AddRange(response);
+                    currencyCacheMap.Add(new Tuple<string, string, DateTime, DateTime>(item.Key.ToUpper(), item.Value.ToUpper(), startDate, endDate), currencyRate);
+                    _memoryCache.Set(new Tuple<string, string, DateTime, DateTime>(item.Key.ToUpper(), item.Value.ToUpper(), startDate, endDate), currencyRate);
+                }
+                else
+                {
+                    currencyCacheMap.Add(new Tuple<string, string, DateTime, DateTime>(item.Key.ToUpper(), item.Value.ToUpper(), startDate, endDate), (List<CurrencyRate>)currencyCache);
+                }
+
             }
 
-            var currencyHistory = currencyRates.Select(x => new CurrencyHistory
-            {
-                currency = x.Currency,
-                history = new History
-                {
-                    date= x.Date,
-                    details = new List<Details>()
-                    {
-                        new Details()
-                        {
-                            denominator = x.CurrencyDenominator,
-                            rate = x.Rate,
-                        }
-                    }
-                }
-            });
+            //TODO:Convert dictionary to proper results IEnumerable<CurrencyHistory>
+            var x = currencyCacheMap;
 
-            return currencyHistory;
+            return null;
         }
     }
 }

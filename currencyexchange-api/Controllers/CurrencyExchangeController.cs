@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace currencyexchange_api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/currencyexchange")]
     [ApiController]
     public class CurrencyExchangeController : ControllerBase
     {
