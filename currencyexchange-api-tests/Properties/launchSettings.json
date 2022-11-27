@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "currencyexchange-api-tests": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61797;http://localhost:61798"
+    }
+  }
+}

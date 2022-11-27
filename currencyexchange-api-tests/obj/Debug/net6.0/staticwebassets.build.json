@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "7FvV3+Fn7DeaZLI9VXmemMBIrHc3+fGLU5+2MgP2RR0=",
+  "Source": "currencyexchange-api-tests",
+  "BasePath": "_content/currencyexchange-api-tests",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\nway\\source\\repos\\currencyexchange-api\\currencyexchange-api\\currencyexchange-api.csproj",
+      "Version": 2,
+      "Source": "currencyexchange-api",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

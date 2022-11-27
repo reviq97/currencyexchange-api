@@ -1,38 +1,38 @@
 ﻿namespace currencyexchange_api.Models
 {
 
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRoot(Namespace = "", IsNullable = false)]
     public class document
     {
 
         private List<documentData> dataField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("data")]
+        [System.Xml.Serialization.XmlElement("data")]
         public List<documentData> data
         {
             get
             {
-                return this.dataField;
+                return dataField;
             }
             init
             {
-                this.dataField = value;
+                dataField = value;
             }
         }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [Serializable()]
+    [System.ComponentModel.DesignerCategory("code")]
+    [System.Xml.Serialization.XmlType(AnonymousType = true)]
     public class documentData
     {
 
-        private System.DateTime dateField;
+        private DateTime dateField;
 
         private string codeField;
 
@@ -40,21 +40,21 @@
 
         private string baseField;
 
-        private System.DateTime start_dateField;
+        private DateTime start_dateField;
 
-        private System.DateTime end_dateField;
+        private DateTime end_dateField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
-        public System.DateTime date
+        [System.Xml.Serialization.XmlElement(DataType = "date")]
+        public DateTime date
         {
             get
             {
-                return this.dateField;
+                return dateField;
             }
             init
             {
-                this.dateField = value;
+                dateField = value;
             }
         }
 
@@ -63,11 +63,11 @@
         {
             get
             {
-                return this.codeField;
+                return codeField;
             }
             init
             {
-                this.codeField = value;
+                codeField = value;
             }
         }
 
@@ -76,11 +76,11 @@
         {
             get
             {
-                return this.rateField;
+                return rateField;
             }
             init
             {
-                this.rateField = value;
+                rateField = value;
             }
         }
 
@@ -89,39 +89,39 @@
         {
             get
             {
-                return this.baseField;
+                return baseField;
             }
             init
             {
-                this.baseField = value;
+                baseField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
-        public System.DateTime start_date
+        [System.Xml.Serialization.XmlElement(DataType = "date")]
+        public DateTime start_date
         {
             get
             {
-                return this.start_dateField;
+                return start_dateField;
             }
             init
             {
-                this.start_dateField = value;
+                start_dateField = value;
             }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
-        public System.DateTime end_date
+        [System.Xml.Serialization.XmlElement(DataType = "date")]
+        public DateTime end_date
         {
             get
             {
-                return this.end_dateField;
+                return end_dateField;
             }
             init
             {
-                this.end_dateField = value;
+                end_dateField = value;
             }
         }
     }

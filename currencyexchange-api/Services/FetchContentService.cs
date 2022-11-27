@@ -18,7 +18,7 @@ namespace currencyexchange_api.Services
             _requestResultDeserializer = requestResultSerializer;
         }
 
-        public async Task<IEnumerable<CurrencyRate>> FetchCurrencyRate(FetchCurrencyRequest currencyRequest )
+        public async Task<IEnumerable<CurrencyRate>> FetchCurrencyRate(FetchCurrencyRequest currencyRequest)
         {
 
             var basePath = _configuration.GetValue<string>("RestClients:ExchangeRate:BasePath");

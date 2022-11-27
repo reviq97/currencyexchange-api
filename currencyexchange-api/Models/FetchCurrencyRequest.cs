@@ -16,7 +16,7 @@
         }
 
         public string Currency { get => _currency; init => _currency = value; }
-        public string CurrencyDenominator { get => _currencyDenominator; init => this._currencyDenominator = value; }
+        public string CurrencyDenominator { get => _currencyDenominator; init => _currencyDenominator = value; }
         public DateTime StartDate { get => _startDate; init => _startDate = value; }
         public DateTime EndDate { get => _endDate; init => _endDate = value; }
     }

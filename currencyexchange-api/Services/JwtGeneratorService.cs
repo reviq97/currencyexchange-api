@@ -23,7 +23,7 @@ namespace currencyexchange_api.Services
         {
             var apiUser = _applicationDbContext.ApiUsers.FirstOrDefault(x => x.Email == email);
 
-            if (apiUser is null) 
+            if (apiUser is null)
             {
                 return "Invalid email value";
             }

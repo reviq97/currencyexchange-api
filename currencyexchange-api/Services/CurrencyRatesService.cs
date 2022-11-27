@@ -17,22 +17,21 @@ namespace currencyexchange_api.Services
             _fetchContentService = fetchContentService;
             _memoryCache = memoryCache;
         }
-        public async Task<IEnumerable<CurrencyHistory>> GetRates(ExchangeSpan exchangeSpan)
+        public async Task<IEnumerable<IEnumerable<CurrencyHistory>>> GetRates(ExchangeSpan exchangeSpan)
         {
             var startDate = exchangeSpan.StartDate;
             var endDate = exchangeSpan.EndDate;
 
-            var currencyCacheMap = new Dictionary<Tuple<string, string, DateTime, DateTime >, List<CurrencyRate>>();
+            var currencyCacheMap = new Dictionary<Tuple<string, string, DateTime, DateTime>, List<CurrencyRate>>();
 
 
             foreach (var item in exchangeSpan.currencyCodes)
             {
-                var currencyCache = _memoryCache.Get(new Tuple<string, string, DateTime, DateTime>(item.Key.ToUpper(), item.Value.ToUpper(),startDate, endDate ));
+                var currencyCache = _memoryCache.Get(new Tuple<string, string, DateTime, DateTime>(item.Key.ToUpper(), item.Value.ToUpper(), startDate, endDate));
                 var currencyRate = new List<CurrencyRate>();
 
                 if (currencyCache is null)
                 {
-
                     var gatewayRequest = new FetchCurrencyRequest(item.Key.ToUpper(), item.Value.ToUpper(), startDate, endDate);
                     var response = await _fetchContentService.FetchCurrencyRate(gatewayRequest);
                     currencyRate.AddRange(response);
@@ -46,10 +45,25 @@ namespace currencyexchange_api.Services
 
             }
 
-            //TODO:Convert dictionary to proper results IEnumerable<CurrencyHistory>
-            var x = currencyCacheMap;
+            var historyRatesList = currencyCacheMap.ToList().Select(x => x.Value.Select(x => new CurrencyHistory
+            {
+                currency = x.Currency,
+                history = new List<History>()
+                {
+                    new History
+                    {
+                        date = x.Date,
+                        details = new Details
+                        {
+                            denominator = x.CurrencyDenominator,
+                            rate = x.Rate,
+                        }
+                    }
+                }
+            }));
 
-            return null;
+            return historyRatesList.ToList();
+
         }
     }
 }

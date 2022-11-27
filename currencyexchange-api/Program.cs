@@ -5,7 +5,7 @@ using currencyexchange_api.Middleware;
 using currencyexchange_api.Models;
 using currencyexchange_api.Services;
 using currencyexchange_api.Services.Interfaces;
-using currencyexchange_api.Validation;
+using currencyexchange_api.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;

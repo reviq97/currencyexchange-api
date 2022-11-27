@@ -14,7 +14,7 @@
     public class History
     {
         public DateTime date { get; init; }
-        public List<Details> details { get; init; }
+        public Details details { get; init; }
     }
-    
+
 }

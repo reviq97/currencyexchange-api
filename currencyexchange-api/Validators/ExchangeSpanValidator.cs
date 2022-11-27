@@ -2,11 +2,11 @@
 using currencyexchange_api.Entity;
 using FluentValidation;
 
-namespace currencyexchange_api.Validation
+namespace currencyexchange_api.Validators
 {
     public class ExchangeSpanValidator : AbstractValidator<ExchangeSpan>
     {
-        public ExchangeSpanValidator(ApplicationDbContext applicationDbContext) 
+        public ExchangeSpanValidator(ApplicationDbContext applicationDbContext)
         {
             RuleFor(curr => curr.currencyCodes).Must(dict =>
             {
@@ -20,7 +20,6 @@ namespace currencyexchange_api.Validation
                 return true;
             }).WithMessage("Currencies cannot be empty");
 
-            RuleFor(apiKey => apiKey.ApiKey).Must(apiKey => applicationDbContext.ApiUsers.Any(x => x.ApiKey == apiKey)).WithMessage("Wring api-key");
             RuleFor(endDate => endDate.EndDate).Must(endDate => endDate.Date <= DateTime.Now || !string.IsNullOrEmpty(endDate.ToString()) || !string.IsNullOrWhiteSpace(endDate.ToString())).WithMessage("Date couldn't be higher than today or empty");
             RuleFor(startDate => startDate.EndDate).Must(startDate => startDate.Date <= DateTime.Now || !string.IsNullOrEmpty(startDate.ToString()) || !string.IsNullOrWhiteSpace(startDate.ToString())).WithMessage("Date couldn't be higher than today or empty");
             RuleFor(date => new { date.StartDate, date.EndDate }).Must(date => date.StartDate.Date <= date.EndDate.Date).WithMessage("Start date should be earlier than End date");
