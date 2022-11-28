@@ -7,9 +7,15 @@ namespace currencyexchange_api.Services
 {
     public class RequestResultDeserializer : IRequestResultDeserializer
     {
+        private readonly ILogger<RequestResultDeserializer> _logger;
 
+        public RequestResultDeserializer(ILogger<RequestResultDeserializer> logger)
+        {
+            _logger = logger;
+        }
         public async Task<T> DeserializeXmlToObject<T>(string deserializedObject)
         {
+            _logger.LogInformation("Starting deserialize proccess");
             var xml = XDocument.Parse(deserializedObject);
             var serializer = new XmlSerializer(typeof(T));
 

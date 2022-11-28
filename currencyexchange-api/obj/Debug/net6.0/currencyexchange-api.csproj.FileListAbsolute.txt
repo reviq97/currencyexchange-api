@@ -65,3 +65,7 @@ C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\bin\Debug\n
 C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\bin\Debug\net6.0\nlog.config
+C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\bin\Debug\net6.0\NLog.dll
+C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+C:\Users\nway\source\repos\currencyexchange-api\currencyexchange-api\bin\Debug\net6.0\NLog.Web.AspNetCore.dll

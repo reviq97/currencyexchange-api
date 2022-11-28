@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jZAFBUkQ4FhpN1NofimXzNPs6+IAzE6uvM2CCnGoS/U8k/V3oDlh13ISp9g/I+xB0mnmdl+6Yl5Vw7QaefdMnQ==",
+  "dgSpecHash": "rUhZRsHm+C+RxPbqq56ZtJjWwMVrpq0OhxP7fovRKN/D+mPi/Yze4ODJbU59Vc/vuTB3c71XzWO+kAylI+7fqA==",
   "success": true,
   "projectFilePath": "C:\\Users\\nway\\source\\repos\\currencyexchange-api\\currencyexchange-api\\currencyexchange-api.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,9 @@
     "C:\\Users\\nway\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
+    "C:\\Users\\nway\\.nuget\\packages\\nlog\\5.1.0\\nlog.5.1.0.nupkg.sha512",
+    "C:\\Users\\nway\\.nuget\\packages\\nlog.extensions.logging\\5.2.0\\nlog.extensions.logging.5.2.0.nupkg.sha512",
+    "C:\\Users\\nway\\.nuget\\packages\\nlog.web.aspnetcore\\5.2.0\\nlog.web.aspnetcore.5.2.0.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\npgsql\\7.0.0\\npgsql.7.0.0.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.0\\npgsql.entityframeworkcore.postgresql.7.0.0.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",

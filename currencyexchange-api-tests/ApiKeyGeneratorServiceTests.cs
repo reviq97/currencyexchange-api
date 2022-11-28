@@ -1,8 +1,13 @@
 
 
+using currencyexchange_api.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.EntityFrameworkCore;
+using Moq;
+
 namespace currencyexchange_api_tests
 {
-    public class ApiKeyGeneratorServiceTests : IClassFixture<WebApplicationFactory<Startup>>
+    public class ApiKeyGeneratorServiceTests : IClassFixture<WebApplicationFactory<Program>>
     {
         HttpClient _client;
         private Mock<IApiKeyGeneratorService> _apiKeyGeneratorService = new Mock<IApiKeyGeneratorService>();
@@ -12,7 +17,9 @@ namespace currencyexchange_api_tests
             {
                 builder.ConfigureServices(services =>
                 {
-                    services.AddSingleton<IApiKeyGeneratorService>(_apiKeyGeneratorService.Object);
+                    var dbContext = services.SingleOrDefault(service => service.ServiceType == typeof(DbContextOptions<ApplicationDbContext>));
+
+                    services.Remove(dbContext);
 
                 });
             }).CreateClient();

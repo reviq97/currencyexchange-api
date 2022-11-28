@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kPPcxWKeKISXRDzpteyGE2t9O4j1Jg/SHkD13EzkltS7MlUXPw9l1nciaNeWXvCVzKconmCnKhZatpv6nBi5nw==",
+  "dgSpecHash": "mIp6jXP8JeHj6ztWhlrzdkm6P71DmcrzTmCyRhG/cThRTVCi7r0n2JWUgMFWUNklH9cIMJgC6L/97wAqafJS8w==",
   "success": true,
   "projectFilePath": "C:\\Users\\nway\\source\\repos\\currencyexchange-api\\currencyexchange-api-tests\\currencyexchange-api-tests.csproj",
   "expectedPackageFiles": [
@@ -75,6 +75,9 @@
     "C:\\Users\\nway\\.nuget\\packages\\moq\\4.18.2\\moq.4.18.2.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
+    "C:\\Users\\nway\\.nuget\\packages\\nlog\\5.1.0\\nlog.5.1.0.nupkg.sha512",
+    "C:\\Users\\nway\\.nuget\\packages\\nlog.extensions.logging\\5.2.0\\nlog.extensions.logging.5.2.0.nupkg.sha512",
+    "C:\\Users\\nway\\.nuget\\packages\\nlog.web.aspnetcore\\5.2.0\\nlog.web.aspnetcore.5.2.0.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\npgsql\\7.0.0\\npgsql.7.0.0.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.0\\npgsql.entityframeworkcore.postgresql.7.0.0.nupkg.sha512",
     "C:\\Users\\nway\\.nuget\\packages\\nuget.frameworks\\5.11.0\\nuget.frameworks.5.11.0.nupkg.sha512",

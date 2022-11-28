@@ -15,26 +15,33 @@ namespace currencyexchange_api.Controllers
         private readonly ICurrencyRatesService _currencyRatesService;
         private readonly IApiKeyGeneratorService _apiKeyGeneratorService;
         private readonly IJwtGeneratorService _jwtGeneratorService;
+        private readonly ILogger<CurrencyExchangeController> _logger;
 
-        public CurrencyExchangeController(ICurrencyRatesService currencyExchangeService, IApiKeyGeneratorService apiKeyGeneratorService, IJwtGeneratorService jwtGeneratorService)
+        public CurrencyExchangeController(ICurrencyRatesService currencyExchangeService, 
+                                          IApiKeyGeneratorService apiKeyGeneratorService, 
+                                          IJwtGeneratorService jwtGeneratorService,
+                                          ILogger<CurrencyExchangeController> logger)
         {
             _currencyRatesService = currencyExchangeService;
             _apiKeyGeneratorService = apiKeyGeneratorService;
             _jwtGeneratorService = jwtGeneratorService;
+            _logger = logger;
         }
 
         [Authorize]
         [HttpPost("currency/timeline")]
         public async Task<ActionResult<IEnumerable<CurrencyHistory>>> GetRates([FromBody] ExchangeSpan exchangeSpan)
         {
+            _logger.LogInformation($"Invoked {nameof(GetRates)} controller");
             var result = await _currencyRatesService.GetRates(exchangeSpan);
-
+            _logger.LogInformation($"Retrieve result to controller:currency/timeline");
             return Ok(result);
         }
 
         [HttpPost("apikey/register")]
         public async Task<ActionResult<string>> RegisterApiKey(string email)
         {
+            _logger.LogInformation($"Invoked apikey/register controller");
             var message = _apiKeyGeneratorService.GenerateApiKey(email);
 
             return Ok(message);
@@ -43,6 +50,7 @@ namespace currencyexchange_api.Controllers
         [HttpPost("apikey/login")]
         public async Task<ActionResult<string>> Login(string email)
         {
+            _logger.LogInformation($"Invoked apikey/login controller");
             var token = _jwtGeneratorService.GenerateJwtToken(email);
 
             return Ok(token);
